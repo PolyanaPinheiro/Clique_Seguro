@@ -127,30 +127,84 @@ def tutorial_page(request, category_id, tutorial_id):
     if not category:
         return redirect('home')
 
-    # Simulando os passos do tutorial selecionado
-    steps = [
-        {
-            'id': 1,
-            'title': 'Identifique o número desconhecido',
-            'description': 'Quando o seu telemóvel tocar, olhe para o ecrã. Se aparecer "Spam suspeito" ou um número muito estranho, tenha cuidado.',
-            'tips': 'Nunca atenda ligações de números marcados como spam suspeito pelo telemóvel.',
-            'icon_svg': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-full h-full text-orange-600"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M14.05 2a9 9 0 0 1 8 7.94"/><path d="M14.05 6A5 5 0 0 1 18 10"/></svg>',
-            # AQUI ESTÁ A MUDANÇA: Apontando para a imagem que você enviou
-            'interactiveImage': '/static/IMG/spam_suspeito.jpg', 
-            'imageHotspots': []
-        },
-        {
-            'id': 2,
-            'title': 'Toque no botão vermelho para recusar',
-            'description': 'Para não atender a ligação, toque no botão vermelho. Ele costuma ficar no canto inferior esquerdo.',
-            'tips': 'Ao recusar, a pessoa não tem qualquer acesso ao seu telemóvel.',
-            'icon_svg': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-full h-full text-red-600"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"/><line x1="22" y1="2" x2="2" y2="22"/></svg>',
-        }
-    ]
+    tutorial_title = ""
+    steps = []
 
+    # ====================================================================
+    # TUTORIAL A: Ligações Suspeitas (O que você já tinha)
+    # ====================================================================
+    if tutorial_id == 'identificar-golpes' or tutorial_id == 'links-suspeitos': 
+        # (Ajustei o ID para bater com a lista que você tem na categoria 'golpes-seguranca')
+        tutorial_title = 'Como Identificar Ligações Suspeitas'
+        steps = [
+            {
+                'id': 1,
+                'title': 'Identifique o número desconhecido',
+                'description': 'Quando o seu telemóvel tocar, olhe para o ecrã. Se aparecer "Spam suspeito", tenha cuidado.',
+                'tips': 'Nunca atenda ligações de números marcados como spam suspeito pelo telemóvel.',
+                'interactiveImage': '/static/IMG/spam_suspeito.jpg', 
+            },
+            {
+                'id': 2,
+                'title': 'Toque no botão vermelho para recusar',
+                'description': 'Para não atender a ligação, toque no botão vermelho. Ele costuma ficar no canto inferior esquerdo.',
+                'tips': 'Ao recusar, a pessoa não tem qualquer acesso ao seu telemóvel.',
+                'interactiveImage': '/static/IMG/botao_recusar.jpg', # Nova foto se houver
+            }
+        ]
+
+    # ====================================================================
+    # TUTORIAL B: Como tirar foto (Novo tutorial adicionado!)
+    # ====================================================================
+    elif tutorial_id == 'tirar-foto':
+        tutorial_title = 'Como Tirar uma Foto'
+        steps = [
+            {
+                'id': 1,
+                'title': 'Abra o aplicativo da Câmera',
+                'description': 'Procure na tela do seu celular pelo ícone que se parece com uma máquina fotográfica e toque nele.',
+                'tips': 'Geralmente ele fica na primeira página do seu celular.',
+                'interactiveImage': '/static/IMG/abrir_camera.jpg',
+            },
+            {
+                'id': 2,
+                'title': 'Segure o celular firme e mire no que quer fotografar',
+                'description': 'Olhe para a tela do celular e aponte para a pessoa, objeto ou paisagem que você deseja registrar.',
+                'tips': 'Tente segurar o celular com as duas mãos para a foto não sair tremida.',
+                'interactiveImage': '/static/IMG/mirar_foto.jpg',
+            },
+            {
+                'id': 3,
+                'title': 'Toque no grande botão branco para bater a foto',
+                'description': 'Na parte de baixo da tela, haverá um círculo grande e branco. Toque nele uma vez. Você ouvirá um som de clique!',
+                'tips': 'Pronto! A foto foi salva automaticamente e você pode vê-la na sua Galeria.',
+                'interactiveImage': '/static/IMG/clique_foto.jpg',
+            }
+        ]
+
+    # ====================================================================
+    # TUTORIAL C: Como usar o Pix (Mais um exemplo)
+    # ====================================================================
+    elif tutorial_id == 'usar-pix':
+        tutorial_title = 'Como usar o Pix'
+        steps = [
+            {
+                'id': 1,
+                'title': 'Abra o aplicativo do seu Banco',
+                'description': 'Toque no ícone do seu banco e coloque sua senha para entrar na sua conta com segurança.',
+                'tips': 'Nunca anote sua senha atrás do celular.',
+                'interactiveImage': '/static/IMG/abrir_banco.jpg',
+            },
+            # ... adicione quantos passos quiser aqui ...
+        ]
+
+    # Se o usuário tentar acessar um tutorial que não existe nas condições acima
+    if not steps:
+        return redirect('home')
+    
     context = {
         'category': category,
-        'tutorial': {'title': 'Como Identificar Ligações Suspeitas'},
+        'tutorial': {'title': tutorial_title},
         'steps': steps
     }
     return render(request, 'tutorial_page.html', context)
