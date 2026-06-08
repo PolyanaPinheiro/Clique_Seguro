@@ -1,24 +1,22 @@
 """
 Django settings for clique_seguro project.
-Versão adaptada para produção (Render).
+Configuração otimizada para desenvolvimento local e deploy no Render.
 """
 
 from pathlib import Path
 import os
+import dj_database_url
 
+# BASE_DIR aponta para a raiz do projeto (onde fica o manage.py)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ─── Segurança ────────────────────────────────────────────────────────────────
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-mude-isso-em-producao')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+# ─── Segurança e Ambiente ─────────────────────────────────────────────────────
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-u0sqy16q@^e+na8p-ne*gu1p8x^+qxb&kn$qlf$$s+h#kg43&q')
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
-# Aceita também o domínio .onrender.com automaticamente
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS = ['*']
 
-# ─── Apps ─────────────────────────────────────────────────────────────────────
+# ─── Apps e Middleware ────────────────────────────────────────────────────────
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -31,7 +29,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',   # ← serve estáticos em produção
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Necessário para arquivos estáticos no Render
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -61,10 +59,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'clique_seguro.wsgi.application'
 
-# ─── Banco de dados ───────────────────────────────────────────────────────────
-# Usa PostgreSQL se DATABASE_URL estiver definida, senão SQLite local
-import dj_database_url  # pip install dj-database-url
-
+# ─── Banco de Dados ───────────────────────────────────────────────────────────
+# Usa variável de ambiente DATABASE_URL (Render) ou SQLite (Local)
 DATABASE_URL = os.environ.get('DATABASE_URL')
 if DATABASE_URL:
     DATABASES = {
@@ -78,7 +74,7 @@ else:
         }
     }
 
-# ─── Validação de senha ───────────────────────────────────────────────────────
+# ─── Validação de senha e I18n ────────────────────────────────────────────────
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -86,21 +82,16 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# ─── i18n ─────────────────────────────────────────────────────────────────────
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Manaus'
 USE_I18N = True
 USE_TZ = True
 
-# ─── Arquivos estáticos ───────────────────────────────────────────────────────
+# ─── Arquivos Estáticos ───────────────────────────────────────────────────────
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# WhiteNoise — compressão e cache
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# ─── Auth ─────────────────────────────────────────────────────────────────────
 LOGIN_URL = 'login'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
