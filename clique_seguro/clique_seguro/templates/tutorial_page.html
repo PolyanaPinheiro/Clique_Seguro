@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="max-w-[1800px] mx-auto px-4 sm:px-8 py-8 sm:py-12">
+    
+    <div class="mb-8">
+        <div class="flex items-center gap-4 mb-6">
+            <a href="{% url 'home' %}" class="flex items-center gap-3 {% if high_contrast %}text-white hover:text-gray-300{% else %}text-gray-700 hover:text-gray-900{% endif %} transition-colors w-fit">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 sm:w-10 sm:h-10"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="text-xl sm:text-2xl font-bold">Voltar ao Início</span>
+            </a>
+        </div>
+
+        <div class="text-center">
+            <p class="text-lg sm:text-xl mb-2 {% if high_contrast %}text-gray-300{% else %}text-gray-600{% endif %}">{{ category.name }}</p>
+            <h1 class="text-2xl sm:text-4xl font-bold mb-4 {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">{{ tutorial.title }}</h1>
+        </div>
+
+        <div class="mt-4 max-w-3xl mx-auto">
+            <div class="{% if high_contrast %}bg-gray-700{% else %}bg-gray-200{% endif %} rounded-full h-6 sm:h-8 overflow-hidden">
+                <div id="progressBar" class="h-full {% if high_contrast %}bg-yellow-400{% else %}{{ category.color }}{% endif %} transition-all duration-500" style="width: 0%;"></div>
+            </div>
+            <p id="stepCounter" class="text-center mt-3 text-lg font-bold">Passo 1 de {{ steps|length }}</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-8">
+            <div class="{% if high_contrast %}bg-gray-900 border-4 border-white{% else %}bg-white{% endif %} rounded-3xl p-6 sm:p-10 shadow-2xl">
+                {% for step in steps %}
+                <div id="step-text-{{ forloop.counter0 }}" class="tutorial-text-step hidden">
+                    <div class="flex justify-center mb-6">
+                        <div class="{% if high_contrast %}bg-yellow-400 text-black{% else %}{{ category.color }} text-white{% endif %} rounded-full w-16 h-16 flex items-center justify-center text-3xl font-bold">{{ forloop.counter }}</div>
+                    </div>
+                    <h2 class="text-3xl font-bold text-center mb-6">{{ step.title }}</h2>
+                    <div class="bg-gray-50 rounded-2xl p-6 mb-6">
+                        <p class="text-xl">{{ step.description }}</p>
+                    </div>
+
+                    <div class="flex justify-center mb-6">
+                        <button onclick="handleMarkComplete({{ forloop.counter0 }})" class="btn-mark-complete px-10 py-5 rounded-2xl text-xl font-bold bg-blue-600 text-white shadow-xl transition-all">
+                            Marcar como Concluído
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 step-navigation-btns">
+                        <button onclick="handlePreviousStep()" class="bg-gray-600 text-white py-5 rounded-2xl font-bold">Anterior</button>
+                        <button onclick="handleNextStep()" class="btn-next {{ category.color }} text-white py-5 rounded-2xl font-bold">Próximo</button>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div id="final-completion-msg" class="hidden text-center p-10 bg-green-100 border-4 border-green-500 rounded-3xl mt-8">
+                    <h2 class="text-3xl font-bold text-green-800 mb-4">Parabéns!</h2>
+                    <a href="{% url 'home' %}" class="bg-green-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-green-700">Voltar para o Início</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:sticky lg:top-32 lg:self-start">
+            <div class="{% if high_contrast %}bg-gray-900 border-4 border-white{% else %}bg-white{% endif %} rounded-3xl p-8 shadow-2xl">
+                <h3 class="text-xl font-bold mb-6 text-center">Visualização</h3>
+                {% for step in steps %}
+                <div id="step-image-{{ forloop.counter0 }}" class="tutorial-image-step hidden">
+                    {% if step.html_interativo %}{{ step.html_interativo|safe }}
+                    {% elif step.interactiveImage %}<img src="{{ step.interactiveImage }}" class="mx-auto rounded-xl shadow-md">
+                    {% else %}<div class="p-12 text-center text-gray-500">Imagem em breve</div>{% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    const totalSteps = {{ steps|length }};
+    let currentStep = 0;
+    let completedSteps = [];
+    
+    const isAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};
+    const isAlreadyCompleted = {{ is_completed|yesno:"true,false" }};
+    let progressoSalvo = isAlreadyCompleted; // Se já estava concluído, não tenta guardar de novo
+
+    // Função que avisa o banco de dados da conclusão
+    function salvarProgressoNoBanco() {
+        if (!isAuthenticated || progressoSalvo) return;
+        
+        fetch("{% url 'concluir_tutorial' tutorial.id %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        })
+        .then(response => response.json())
+        .then(data => { if(data.success) progressoSalvo = true; })
+        .catch(error => console.error("Erro:", error));
+    }
+
+    function updateUI() {
+        // Esconde tudo
+        document.querySelectorAll('.tutorial-text-step').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.tutorial-image-step').forEach(el => el.classList.add('hidden'));
+        
+        // Isola as divs do passo atual
+        const activeText = document.getElementById('step-text-' + currentStep);
+        const activeImg = document.getElementById('step-image-' + currentStep);
+        
+        if(activeText) activeText.classList.remove('hidden');
+        if(activeImg) activeImg.classList.remove('hidden');
+        
+        // 1. CORREÇÃO DA BARRA DE PROGRESSO
+        const progress = ((currentStep + 1) / totalSteps) * 100;
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        
+        if(progressBar) progressBar.style.width = progress + '%';
+        if(progressText) progressText.innerText = Math.round(progress) + '%';
+        document.getElementById('stepCounter').innerText = 'Passo ' + (currentStep + 1) + ' de ' + totalSteps;
+
+        // 2. CORREÇÃO DOS BOTÕES "PRÓXIMO" E MENSAGEM FINAL
+        const finalMsg = document.getElementById('final-completion-msg');
+        // Pega os botões SOMENTE do passo atual, para não esconder o errado
+        const navBtns = activeText ? activeText.querySelector('.step-navigation-btns') : null;
+        const markBtn = activeText ? activeText.querySelector('.btn-mark-complete') : null;
+
+        // Verifica se o tutorial já estava salvo no banco de dados
+        if (isAlreadyCompleted && markBtn) {
+            markBtn.classList.replace('bg-blue-600', 'bg-green-500');
+            markBtn.innerText = "✓ Concluído (Salvo)";
+        }
+
+        if (currentStep === totalSteps - 1) {
+            // É o último passo! Mostra a mensagem e esconde a navegação e o botão de marcar
+            if(finalMsg) finalMsg.classList.remove('hidden');
+            if(navBtns) navBtns.classList.add('hidden');
+            if(markBtn) markBtn.parentElement.classList.add('hidden');
+            
+            salvarProgressoNoBanco();
+        } else {
+            // Não é o último passo!
+            if(finalMsg) finalMsg.classList.add('hidden');
+            if(navBtns) navBtns.classList.remove('hidden');
+            if(markBtn) markBtn.parentElement.classList.remove('hidden');
+        }
+    }
+
+    function handleNextStep() { if (currentStep < totalSteps - 1) { currentStep++; updateUI(); window.scrollTo(0, 0); } }
+    function handlePreviousStep() { if (currentStep > 0) { currentStep--; updateUI(); window.scrollTo(0, 0); } }
+    
+    function handleMarkComplete(stepIndex) { 
+        if (!completedSteps.includes(stepIndex)) {
+            completedSteps.push(stepIndex);
+            const btn = document.querySelector('#step-text-' + stepIndex + ' .btn-mark-complete');
+            if (btn) {
+                btn.classList.replace('bg-blue-600', 'bg-green-500');
+                btn.innerText = "✓ Concluído";
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', updateUI);
+</script>
+{% endblock %}

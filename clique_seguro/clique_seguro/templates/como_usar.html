@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+
+    <section class="{% if high_contrast %}bg-gray-900 border-4 border-white{% else %}bg-gradient-to-r from-blue-600 to-purple-600{% endif %} rounded-3xl p-8 sm:p-12 text-white text-center mb-12 shadow-2xl">
+        <div class="flex justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 sm:w-20 sm:h-20">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+            </svg>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-bold mb-4 leading-tight">Como Usar a Plataforma</h1>
+        <p class="text-lg sm:text-2xl leading-relaxed max-w-3xl mx-auto">
+            Bem-vindo à área de treino! Aqui pode clicar em tudo à vontade para descobrir como o site funciona.
+        </p>
+    </section>
+
+    <nav class="{% if high_contrast %}bg-gray-900 border-4 border-white{% else %}bg-white{% endif %} rounded-3xl p-6 sm:p-8 shadow-xl mb-10">
+        <h2 class="text-xl sm:text-2xl font-bold mb-4 {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 inline mr-2"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+            Nesta página você encontra:
+        </h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <li><a href="#categorias" class="flex items-center gap-3 {% if high_contrast %}text-yellow-400 hover:text-yellow-200{% else %}text-blue-600 hover:text-blue-800{% endif %} text-lg font-semibold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg><span class="underline underline-offset-2">Treino: Categorias</span></a></li>
+            <li><a href="#acessibilidade" class="flex items-center gap-3 {% if high_contrast %}text-yellow-400 hover:text-yellow-200{% else %}text-blue-600 hover:text-blue-800{% endif %} text-lg font-semibold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><circle cx="12" cy="12" r="10"/><path d="M12 18a6 6 0 0 0 0-12v12z"/></svg><span class="underline underline-offset-2">Treino: Acessibilidade</span></a></li>
+            <li><a href="#dicionario" class="flex items-center gap-3 {% if high_contrast %}text-yellow-400 hover:text-yellow-200{% else %}text-blue-600 hover:text-blue-800{% endif %} text-lg font-semibold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg><span class="underline underline-offset-2">Treino: Dicionário</span></a></li>
+            <li><a href="#tutoriais" class="flex items-center gap-3 {% if high_contrast %}text-yellow-400 hover:text-yellow-200{% else %}text-blue-600 hover:text-blue-800{% endif %} text-lg font-semibold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="underline underline-offset-2">Como ler os tutoriais</span></a></li>
+            <li><a href="#login" class="flex items-center gap-3 {% if high_contrast %}text-yellow-400 hover:text-yellow-200{% else %}text-blue-600 hover:text-blue-800{% endif %} text-lg font-semibold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="underline underline-offset-2">Login e Registo</span></a></li>
+        </ul>
+    </nav>
+
+    <section id="categorias" class="mb-16 scroll-mt-28">
+        <div class="flex items-center gap-4 mb-6">
+            <div class="{% if high_contrast %}bg-blue-700{% else %}bg-blue-100{% endif %} rounded-2xl p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 {% if high_contrast %}text-white{% else %}text-blue-600{% endif %}"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">Área de Treino: Os Cursos</h2>
+        </div>
+
+        <p class="text-lg sm:text-xl {% if high_contrast %}text-gray-200{% else %}text-gray-600{% endif %} mb-8 leading-relaxed">
+            Na nossa página inicial, vai encontrar estes 4 cartões gigantes. Eles são os nossos "cursos". <strong>Clique neles aqui em baixo para descobrir o que cada um ensina!</strong> (Não se preocupe, clicar aqui não o tira desta página).
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <button onclick="mostrarParabens('Ferramentas do Telemóvel', 'Muito bem! Quando clicar neste botão lá na página inicial, vai encontrar tutoriais sobre como usar a câmara fotográfica, a calculadora, a lanterna e como aumentar ou baixar o volume do telemóvel.')" class="w-full text-left {% if high_contrast %}bg-blue-900 border-4 border-blue-400 hover:bg-blue-800{% else %}bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700{% endif %} text-white rounded-3xl p-8 sm:p-10 transition-all shadow-2xl hover:scale-105 group">
+                <div class="flex flex-col items-center text-center gap-6">
+                    <div class="{% if high_contrast %}bg-blue-400{% else %}bg-white{% endif %} rounded-full p-6 sm:p-8 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 sm:w-20 sm:h-20 {% if high_contrast %}text-black{% else %}text-blue-600{% endif %}"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-3">Ferramentas do Telemóvel</h3>
+                        <p class="text-lg sm:text-xl leading-relaxed">Aprenda a usar a câmara, calculadora, lanterna e muito mais</p>
+                    </div>
+                </div>
+            </button>
+
+            <button onclick="mostrarParabens('Comunicação', 'Excelente! Ao clicar neste botão na vida real, vai ver tutoriais passo-a-passo de como usar o WhatsApp, como fazer chamadas de vídeo com os netos e como ler as suas mensagens.')" class="w-full text-left {% if high_contrast %}bg-green-900 border-4 border-green-400 hover:bg-green-800{% else %}bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-700{% endif %} text-white rounded-3xl p-8 sm:p-10 transition-all shadow-2xl hover:scale-105 group">
+                <div class="flex flex-col items-center text-center gap-6">
+                    <div class="{% if high_contrast %}bg-green-400{% else %}bg-white{% endif %} rounded-full p-6 sm:p-8 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 sm:w-20 sm:h-20 {% if high_contrast %}text-black{% else %}text-green-600{% endif %}"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-3">Comunicação</h3>
+                        <p class="text-lg sm:text-xl leading-relaxed">WhatsApp, chamadas, mensagens e videochamadas</p>
+                    </div>
+                </div>
+            </button>
+
+            <button onclick="mostrarParabens('Golpes e Segurança', 'Boa! Esta é uma das categorias mais importantes. Aqui vamos ensinar-lhe a não cair em armadilhas, como identificar links falsos que enviam por SMS e como proteger a sua conta.')" class="w-full text-left {% if high_contrast %}bg-orange-900 border-4 border-orange-400 hover:bg-orange-800{% else %}bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700{% endif %} text-white rounded-3xl p-8 sm:p-10 transition-all shadow-2xl hover:scale-105 group">
+                <div class="flex flex-col items-center text-center gap-6">
+                    <div class="{% if high_contrast %}bg-orange-400{% else %}bg-white{% endif %} rounded-full p-6 sm:p-8 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 sm:w-20 sm:h-20 {% if high_contrast %}text-black{% else %}text-orange-600{% endif %}"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-3">Golpes e Segurança</h3>
+                        <p class="text-lg sm:text-xl leading-relaxed">Proteja-se de fraudes e use o seu telemóvel com segurança</p>
+                    </div>
+                </div>
+            </button>
+
+            <button onclick="mostrarParabens('Contas e Bancos', 'Fantástico! Ao entrar aqui, vai aprender como instalar a aplicação do seu banco, como ver o seu saldo no telemóvel sem ter de sair de casa e como pagar contas em segurança.')" class="w-full text-left {% if high_contrast %}bg-purple-900 border-4 border-purple-400 hover:bg-purple-800{% else %}bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700{% endif %} text-white rounded-3xl p-8 sm:p-10 transition-all shadow-2xl hover:scale-105 group">
+                <div class="flex flex-col items-center text-center gap-6">
+                    <div class="{% if high_contrast %}bg-purple-400{% else %}bg-white{% endif %} rounded-full p-6 sm:p-8 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 sm:w-20 sm:h-20 {% if high_contrast %}text-black{% else %}text-purple-600{% endif %}"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a8 8 0 0 1-5-1.52"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-3">Contas e Bancos</h3>
+                        <p class="text-lg sm:text-xl leading-relaxed">Aplicações bancárias, pagamentos e compras online</p>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <section id="acessibilidade" class="mb-16 scroll-mt-28">
+        <div class="flex items-center gap-4 mb-6">
+            <div class="{% if high_contrast %}bg-purple-700{% else %}bg-purple-100{% endif %} rounded-2xl p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 {% if high_contrast %}text-white{% else %}text-purple-600{% endif %}"><circle cx="12" cy="12" r="10"/><path d="M12 18a6 6 0 0 0 0-12v12z"/></svg>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">Área de Treino: Ferramentas de Ajuda</h2>
+        </div>
+
+        <p class="text-lg sm:text-xl {% if high_contrast %}text-gray-200{% else %}text-gray-600{% endif %} mb-8 leading-relaxed">
+            Lá no topo da página (na barra branca), vai ver botões pequeninos que ajudam na leitura. <strong>Treine os cliques abaixo para saber o que eles fazem!</strong>
+        </p>
+
+        <div class="{% if high_contrast %}bg-gray-900 border-4 border-dashed border-yellow-400{% else %}bg-purple-50 border-4 border-dashed border-purple-300{% endif %} rounded-3xl p-8 shadow-inner flex flex-wrap justify-center gap-6">
+            
+            <button onclick="mostrarParabens('A- (Diminuir Letra)', 'Quando o texto estiver grande demais e não couber no ecrã, carregue neste botão lá no topo e as letras vão ficar mais pequeninas.')" class="{% if high_contrast %}bg-white text-black hover:bg-gray-300{% else %}bg-blue-600 text-white hover:bg-blue-700{% endif %} px-6 py-4 rounded-xl font-bold transition-all flex items-center gap-2 text-lg shadow-lg hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="8" x2="14" y1="11" y2="11"/></svg>
+                A-
+            </button>
+
+            <button onclick="mostrarParabens('A+ (Aumentar Letra)', 'Esqueceu os óculos? Não há problema! Carregue neste botão lá no topo as vezes que precisar e o texto do site vai ficar bem grande para conseguir ler.')" class="{% if high_contrast %}bg-white text-black hover:bg-gray-300{% else %}bg-blue-600 text-white hover:bg-blue-700{% endif %} px-6 py-4 rounded-xl font-bold transition-all flex items-center gap-2 text-lg shadow-lg hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="11" x2="11" y1="8" y2="14"/><line x1="8" x2="14" y1="11" y2="11"/></svg>
+                A+
+            </button>
+
+            <button onclick="mostrarParabens('Alto Contraste', 'Este botão mágico tira as cores difíceis e deixa a página com fundo preto e letras brancas e amarelas. É perfeito se a luz do telemóvel estiver a magoar os olhos.')" class="{% if high_contrast %}bg-white text-black hover:bg-gray-300{% else %}bg-purple-600 text-white hover:bg-purple-700{% endif %} px-6 py-4 rounded-xl font-bold transition-all flex items-center gap-2 text-lg shadow-lg hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><circle cx="12" cy="12" r="10"/><path d="M12 18a6 6 0 0 0 0-12v12z"/></svg>
+                Contraste
+            </button>
+
+            <button onclick="mostrarParabens('Ler Texto por Voz', 'Está cansado de ler? Ligue este botão lá no topo, clique num texto qualquer do site, e uma voz vai ler esse texto em voz alta para si!')" class="{% if high_contrast %}bg-yellow-400 text-black hover:bg-yellow-300{% else %}bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600{% endif %} px-6 py-4 rounded-xl font-bold transition-all flex items-center gap-2 text-lg shadow-lg hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                Ler Texto
+            </button>
+        </div>
+    </section>
+
+    <section id="dicionario" class="mb-16 scroll-mt-28">
+        <div class="flex items-center gap-4 mb-6">
+            <div class="{% if high_contrast %}bg-indigo-700{% else %}bg-indigo-100{% endif %} rounded-2xl p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 {% if high_contrast %}text-white{% else %}text-indigo-600{% endif %}"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">Área de Treino: O Dicionário</h2>
+        </div>
+
+        <p class="text-lg sm:text-xl {% if high_contrast %}text-gray-200{% else %}text-gray-600{% endif %} mb-8 leading-relaxed">
+            Se alguma vez vir um botão desenhado no telemóvel e não souber para que serve, ou se ouvir uma palavra difícil (como "App" ou "Link"), é aqui que deve ir. <strong>Clique no botão abaixo para testar!</strong>
+        </p>
+
+        <button onclick="mostrarParabens('Dicionário', 'Perfeito! No Dicionário de verdade, nós traduzimos todo o informatiquês complicado para palavras simples. Se tem dúvidas, é o melhor sítio para visitar!')" class="w-full text-left {% if high_contrast %}bg-white text-black hover:bg-gray-300{% else %}bg-gradient-to-br from-indigo-500 to-indigo-600 text-white hover:from-indigo-600 hover:to-indigo-700{% endif %} rounded-2xl p-6 sm:p-8 transition-all shadow-lg hover:scale-105 group">
+            <div class="flex items-center gap-4">
+                <div class="{% if high_contrast %}bg-black text-white{% else %}bg-white/20{% endif %} rounded-xl p-4 group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 sm:w-12 sm:h-12"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                </div>
+                <div class="text-left">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-2">Dicionário</h3>
+                    <p class="text-base sm:text-lg leading-relaxed">Palavras e ícones explicados de forma simples</p>
+                </div>
+            </div>
+        </button>
+
+    
+<section id="login" class="mb-16 scroll-mt-28">
+        <div class="flex items-center gap-4 mb-6">
+            <div class="{% if high_contrast %}bg-orange-700{% else %}bg-orange-100{% endif %} rounded-2xl p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 {% if high_contrast %}text-white{% else %}text-orange-600{% endif %}"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">Login e Registo</h2>
+        </div>
+
+        <p class="text-lg sm:text-xl {% if high_contrast %}text-gray-200{% else %}text-gray-600{% endif %} mb-8 leading-relaxed">
+            Criar uma conta é <strong>opcional</strong>, mas recomendamos porque guarda o seu progresso e permite retomar de onde parou.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="{% if high_contrast %}bg-gray-900 border-4 border-gray-400{% else %}bg-gray-50 border-2 border-gray-200{% endif %} rounded-2xl p-6 shadow-md">
+                <div class="text-4xl mb-3">👤</div>
+                <h3 class="text-xl font-bold {% if high_contrast %}text-white{% else %}text-gray-700{% endif %} mb-3">Sem Conta (Visitante)</h3>
+                <ul class="space-y-2 {% if high_contrast %}text-gray-300{% else %}text-gray-600{% endif %} text-base sm:text-lg">
+                    <li class="flex gap-2"><span>✅</span> Acesso a todos os tutoriais</li>
+                    <li class="flex gap-2"><span>✅</span> Todas as opções de acessibilidade</li>
+                    <li class="flex gap-2"><span>✅</span> Uso do Dicionário</li>
+                    <li class="flex gap-2"><span>❌</span> Progresso não é guardado</li>
+                    <li class="flex gap-2"><span>❌</span> Sem histórico de conclusões</li>
+                </ul>
+            </div>
+
+            <div class="{% if high_contrast %}bg-gray-900 border-4 border-green-400{% else %}bg-green-50 border-2 border-green-300{% endif %} rounded-2xl p-6 shadow-md">
+                <div class="text-4xl mb-3">⭐</div>
+                <h3 class="text-xl font-bold {% if high_contrast %}text-white{% else %}text-green-700{% endif %} mb-3">Com Conta (Registado)</h3>
+                <ul class="space-y-2 {% if high_contrast %}text-gray-300{% else %}text-gray-600{% endif %} text-base sm:text-lg">
+                    <li class="flex gap-2"><span>✅</span> Acesso a todos os tutoriais</li>
+                    <li class="flex gap-2"><span>✅</span> Todas as opções de acessibilidade</li>
+                    <li class="flex gap-2"><span>✅</span> Uso do Dicionário</li>
+                    <li class="flex gap-2"><span>✅</span> <strong>Progresso guardado automaticamente</strong></li>
+                    <li class="flex gap-2"><span>✅</span> <strong>Ver histórico e medalhas</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="{% if high_contrast %}bg-gray-900 border-4 border-orange-400{% else %}bg-orange-50{% endif %} rounded-2xl p-6 sm:p-8 mt-6 shadow-md">
+            <h3 class="text-xl font-bold {% if high_contrast %}text-white{% else %}text-orange-700{% endif %} mb-4">📝 Como fazer o Registo</h3>
+            <ol class="space-y-3 {% if high_contrast %}text-gray-200{% else %}text-gray-700{% endif %} text-base sm:text-lg">
+                <li class="flex gap-3 items-start"><span class="{% if high_contrast %}bg-orange-400 text-black{% else %}bg-orange-500 text-white{% endif %} rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">1</span> Clique em <strong>"Entrar"</strong> no canto superior direito da página.</li>
+                <li class="flex gap-3 items-start"><span class="{% if high_contrast %}bg-orange-400 text-black{% else %}bg-orange-500 text-white{% endif %} rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">2</span> Na página de Login, procure o link <strong>"Criar conta nova"</strong>.</li>
+                <li class="flex gap-3 items-start"><span class="{% if high_contrast %}bg-orange-400 text-black{% else %}bg-orange-500 text-white{% endif %} rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">3</span> Preencha o seu nome, e-mail e escolha uma palavra-passe.</li>
+                <li class="flex gap-3 items-start"><span class="{% if high_contrast %}bg-orange-400 text-black{% else %}bg-orange-500 text-white{% endif %} rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">4</span> Clique em <strong>"Criar a minha conta"</strong> e está pronto!</li>
+            </ol>
+        </div>
+    </section>
+
+        <!-- Como fazer registo -->
+        <div class="{% if high_contrast %}bg-gray-900 border-4 border-orange-400{% else %}bg-orange-50{% endif %} rounded-2xl p-6 sm:p-8 mt-6 shadow-md">
+            <h3 class="text-xl font-bold {% if high_contrast %}text-white{% else %}text-orange-700{% endif %} mb-4">📝 Como fazer o Registo</h3>
+            <ol class="space-y-3 {% if high_contrast %}text-gray-200{% else %}text-gray-700{% endif %} text-base sm:text-lg">
+                <li class="flex gap-3 items-start"><span class="{% if high_contrast %}bg-orange-400 text-black{% else %}bg-orange-500 text-white{% endif %} rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">1</span> Clique em <strong>"Entrar"</strong> no canto superior direito da página.</li>
+                <li class="flex gap-3 items-start"><span class="{% if high_contrast %}bg-orange-400 text-black{% else %}bg-orange-500 text-white{% endif %} rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">2</span> Na página de Login, procure o link <strong>"Criar conta nova"</strong>.</li>
+                <li class="flex gap-3 items-start"><span class="{% if high_contrast %}bg-orange-400 text-black{% else %}bg-orange-500 text-white{% endif %} rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">3</span> Preencha o seu nome, e-mail e escolha uma palavra-passe.</li>
+                <li class="flex gap-3 items-start"><span class="{% if high_contrast %}bg-orange-400 text-black{% else %}bg-orange-500 text-white{% endif %} rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">4</span> Clique em <strong>"Criar a minha conta"</strong> e está pronto!</li>
+            </ol>
+        </div>
+    </section>
+    
+    <div class="text-center mt-12">
+        <a href="{% url 'home' %}" class="{% if high_contrast %}bg-white text-black hover:bg-gray-200{% else %}bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700{% endif %} px-10 py-5 rounded-2xl text-xl font-bold inline-flex items-center gap-3 shadow-2xl hover:scale-105 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Voltar à Página Principal
+        </a>
+    </div>
+
+</main>
+
+<div id="modal-treino" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all">
+    <div class="{% if high_contrast %}bg-black border-4 border-yellow-400{% else %}bg-white{% endif %} rounded-3xl p-8 max-w-lg w-full shadow-2xl text-center animate__animated animate__bounceIn">
+        <div class="w-20 h-20 mx-auto bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 shadow-inner">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-10 h-10">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+        </div>
+        <h2 class="text-3xl font-bold mb-4 {% if high_contrast %}text-yellow-400{% else %}text-gray-800{% endif %}">Parabéns!</h2>
+        
+        <p id="texto-treino" class="text-xl leading-relaxed mb-8 {% if high_contrast %}text-white{% else %}text-gray-600{% endif %}"></p>
+        
+        <button onclick="fecharTreino()" class="w-full {% if high_contrast %}bg-yellow-400 text-black hover:bg-yellow-300{% else %}bg-green-500 text-white hover:bg-green-600{% endif %} py-4 rounded-xl text-xl font-bold transition-all shadow-md">
+            Entendido!
+        </button>
+    </div>
+</div>
+
+<script>
+    // Agora recebe DOIS textos: o nome do botão e a explicação detalhada
+    function mostrarParabens(nomeDoBotao, explicacao) {
+        const modal = document.getElementById('modal-treino');
+        const texto = document.getElementById('texto-treino');
+        
+        texto.innerHTML = "Você clicou no botão de <strong>" + nomeDoBotao + "</strong>.<br><br>" + explicacao;
+        
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+
+    function fecharTreino() {
+        const modal = document.getElementById('modal-treino');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+</script>
+{% endblock %}

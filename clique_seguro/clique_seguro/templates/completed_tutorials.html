@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+    
+    <div class="mb-10">
+        <a href="{% url 'user_progress' %}" class="mb-6 bg-white text-gray-700 hover:bg-gray-100 px-6 py-4 rounded-xl font-bold transition-all flex items-center gap-3 text-lg shadow-lg w-fit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Voltar ao Perfil
+        </a>
+
+        <div class="{% if high_contrast %}bg-gray-900 border-4 border-white{% else %}bg-gradient-to-br from-blue-600 to-purple-600{% endif %} rounded-3xl p-8 sm:p-12 text-center shadow-xl">
+            <h1 class="text-3xl sm:text-5xl font-bold mb-4 text-white">
+                Os Seus Tutoriais Concluídos
+            </h1>
+            <p class="text-xl text-white opacity-90">
+                Você já concluiu <strong>{{ total_concluidos }}</strong> tutoriais! Reveja-os abaixo.
+            </p>
+        </div>
+    </div>
+
+    <div class="space-y-12">
+        {% for categoria, tutoriais in tutoriais_por_categoria.items %}
+        <div class="{% if high_contrast %}bg-black border-4 border-gray-700{% else %}bg-white{% endif %} rounded-3xl p-6 sm:p-10 shadow-lg">
+            
+            <div class="flex items-center gap-4 mb-6 border-b-2 pb-4 {% if high_contrast %}border-gray-700{% else %}border-gray-100{% endif %}">
+                <div class="w-12 h-12 rounded-xl {{ categoria.color }} flex items-center justify-center text-white shadow-md">
+                    {{ categoria.icon_svg|safe }}
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold {% if high_contrast %}text-white{% else %}text-gray-800{% endif %}">
+                    {{ categoria.name }}
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {% for tutorial in tutoriais %}
+                <a href="{% url 'tutorial' categoria.id tutorial.id %}" class="flex items-center gap-4 p-4 rounded-2xl transition-all border-2 {% if high_contrast %}border-gray-700 hover:border-yellow-400 text-white{% else %}border-gray-100 hover:border-green-400 bg-gray-50 hover:bg-green-50 text-gray-800{% endif %}">
+                    <div class="bg-green-500 text-white rounded-full p-2 flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg leading-tight">{{ tutorial.title }}</h3>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+
+        </div>
+        {% empty %}
+        <div class="text-center py-12 bg-white rounded-3xl shadow-lg p-8">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-20 h-20 mx-auto text-gray-400 mb-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Ainda não há tutoriais concluídos</h2>
+            <p class="text-lg text-gray-600 mb-6">Que tal começar a aprender agora mesmo?</p>
+            <a href="{% url 'home' %}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl transition-all">
+                Ir para o Início
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+</main>
+{% endblock %}
