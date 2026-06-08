@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from main.models import Categoria, Tutorial, Passo, Progresso
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 
 # ==========================================
 # 1. PÁGINAS PRINCIPAIS E AUTENTICAÇÃO
@@ -82,7 +83,14 @@ def register_view(request):
         
     return render(request, 'register.html')
 
-
+def criar_admin(request):
+    from django.contrib.auth.models import User
+    user, created = User.objects.get_or_create(username='admin')
+    user.set_password('senha123')
+    user.is_staff = True
+    user.is_superuser = True
+    user.save()
+    return HttpResponse('Admin pronto! Usuario: admin | Senha: senha123')
 # ==========================================
 # 2. CATEGORIAS E TUTORIAIS
 # ==========================================
