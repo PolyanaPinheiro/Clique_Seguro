@@ -19,7 +19,7 @@ A transição para o mundo digital — como o uso do Pix e de bancos digitais �
 ---
 
 ## 🎬 Demonstração
-https://github.com/user-attachments/assets/https://github.com/PolyanaPinheiro/Clique_Seguro/issues/2#issue-4633217855.mp4
+[https://github.com/user-attachments/assets/https://github.com/PolyanaPinheiro/Clique_Seguro/issues/2#issue-4633217855.mp4](https://private-user-images.githubusercontent.com/208203697/605923512-f1598139-3759-423f-ba0a-0cb515a17bb3.mp4?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODExMTE0MTMsIm5iZiI6MTc4MTExMTExMywicGF0aCI6Ii8yMDgyMDM2OTcvNjA1OTIzNTEyLWYxNTk4MTM5LTM3NTktNDIzZi1iYTBhLTBjYjUxNWExN2JiMy5tcDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNjEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDYxMFQxNzA1MTNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00OGVhZGRlZjdlODU0MjAzMjcwNGRjYTEwNzM3ZTZlODJlZDk3MDAzN2U3YjMzOWQ4OTJjZDlkNDUxMTI2YmQ3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9dmlkZW8lMkZtcDQifQ.hamwRyaNp1gmt8ikzVBQHSvF9dqXt-5ouqDe2mmkicE)
 
 ### Tela Inicial - Escolha de Categorias
 <img width="1600" height="836" alt="Image" src="https://github.com/user-attachments/assets/5ad543b5-1b5f-4423-90ef-8399e8c550c3" />
