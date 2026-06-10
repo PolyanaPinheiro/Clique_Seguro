@@ -19,7 +19,7 @@ A transição para o mundo digital — como o uso do Pix e de bancos digitais �
 ---
 
 ## 🎬 Demonstração
-https://github.com/PolyanaPinheiro/Clique_Seguro/issues/1#issue-4632366511
+[https://github.com/PolyanaPinheiro/Clique_Seguro/issues/1#issue-4632366511](https://github.com/PolyanaPinheiro/Clique_Seguro/issues/2#issue-4633217855)
 
 ### Tela Inicial - Escolha de Categorias
 <img width="1600" height="836" alt="Image" src="https://github.com/user-attachments/assets/5ad543b5-1b5f-4423-90ef-8399e8c550c3" />
